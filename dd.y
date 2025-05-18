@@ -69,7 +69,7 @@ program:
         }
         |
         ;
-
+//BUILDS A TOP LVL AST NODE USING STACK
 function:
 	FUN IDENTIFIER LB parameter_list RB OPEN_BRACE block CLOSE_BRACE
         {
@@ -78,7 +78,6 @@ function:
             stack_push(syntax_stack, function_new((char*)$2, current_syntax));
         }
         ;
-
 parameter_list:
         nonempty_parameter_list
         |
@@ -89,7 +88,7 @@ nonempty_parameter_list:
         |
         TYPE IDENTIFIER
         ;
-
+//PARSES FUNCTION PARAMETERS
 block:
         statement block
         {
@@ -108,7 +107,7 @@ block:
         }
         |
         ;
-
+//RECURSIVELY PARSES A LIST OF STATEMENTS AND WRAPS THEM IN A BLOCK OF NODE USING STACK
 argument_list:
         nonempty_argument_list
         |
@@ -151,7 +150,7 @@ nonempty_argument_list:
             stack_push(syntax_stack, arguments_syntax);
         }
         ;
-
+//HANDLES RETURN STATEMENTS LIKE IF ELSE ETC
 statement:
         RETURN expression SEMICOLON
         {
@@ -300,3 +299,4 @@ expression:
             stack_push(syntax_stack, function_call_new((char*)$1, arguments));
         }
         ;
+//USED IN FUCTION CALL
