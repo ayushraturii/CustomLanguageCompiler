@@ -1,0 +1,18 @@
+fun main() {
+    var x = 5;
+    var y = x + 3;
+    var z = x > y;
+    x = y * 2;
+    if (z) {
+        var w = 10;
+        return w;
+    } else {
+        return x + y;
+    }
+    bar(); // Error: bar is not declared
+}
+
+fun foo() {
+    var a = 1;
+    return a;
+}
